@@ -1,7 +1,8 @@
-package us.lordralex.modbot;
+package us.lordralex.modbot.irc;
 
 import java.util.List;
 import org.pircbotx.PircBotX;
+import us.lordralex.modbot.Main;
 
 /**
  *
@@ -9,8 +10,7 @@ import org.pircbotx.PircBotX;
  */
 public class IrcBotThread extends Thread {
 
-    public IrcBotThread ()
-    {
+    public IrcBotThread() {
         this.setName("Irc_Thread");
     }
 

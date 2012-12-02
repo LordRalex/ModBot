@@ -1,4 +1,4 @@
-package us.lordralex.modbot;
+package us.lordralex.modbot.config;
 
 import java.io.BufferedReader;
 import java.io.File;

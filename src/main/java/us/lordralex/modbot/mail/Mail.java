@@ -1,4 +1,4 @@
-package us.lordralex.modbot;
+package us.lordralex.modbot.mail;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,6 +15,9 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.search.FlagTerm;
 import org.pircbotx.PircBotX;
+import us.lordralex.modbot.Main;
+import us.lordralex.modbot.config.Config;
+import us.lordralex.modbot.scanner.FileExamine;
 
 public class Mail extends Thread {
 
@@ -38,7 +41,7 @@ public class Mail extends Thread {
                     String tempV;
                     store.connect(
                             ((tempV = Config.getStringFromFile("config", "hostname")) == null) ? "localhost" : tempV,
-                            ((tempV = Config.getStringFromFile("config", "username")) == null) ? "user" : tempV, 
+                            ((tempV = Config.getStringFromFile("config", "username")) == null) ? "user" : tempV,
                             ((tempV = Config.getStringFromFile("config", "password")) == null) ? "pass" : tempV);
                     inbox = store.getFolder("Inbox");
                     inbox.open(Folder.READ_WRITE);

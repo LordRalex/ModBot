@@ -1,12 +1,22 @@
 package us.lordralex.modbot;
 
+import java.util.logging.Logger;
+import us.lordralex.modbot.irc.IrcBot;
+import us.lordralex.modbot.irc.IrcBotThread;
+import us.lordralex.modbot.mail.Mail;
+
 public class Main {
 
     private static Mail mail;
     private static IrcBot irc;
     private static IrcBotThread ircthread;
+    private static final Logger logger;
 
-    public static void main(String[] args) throws Exception{
+    static {
+        logger = Logger.getLogger("ModBot");
+    }
+
+    public static void main(String[] args) throws Exception {
         mail = new Mail();
         irc = new IrcBot();
         ircthread = new IrcBotThread();
@@ -24,5 +34,9 @@ public class Main {
 
     public static Thread getIrcThread() {
         return ircthread;
+    }
+
+    public static Logger getLogger() {
+        return logger;
     }
 }

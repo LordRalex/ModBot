@@ -1,9 +1,10 @@
-package us.lordralex.modbot;
+package us.lordralex.modbot.irc;
 
 import java.io.IOException;
 import org.pircbotx.PircBotX;
 import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
+import us.lordralex.modbot.config.Config;
 
 /**
  *

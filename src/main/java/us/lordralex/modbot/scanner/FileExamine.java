@@ -1,4 +1,4 @@
-package us.lordralex.modbot;
+package us.lordralex.modbot.scanner;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import org.pircbotx.Colors;
+import us.lordralex.modbot.Main;
 
 public class FileExamine {
 
