@@ -12,11 +12,17 @@ import org.pircbotx.hooks.ListenerAdapter;
 public class IrcBot extends ListenerAdapter {
 
     private PircBotX driver;
-    public static final String CHANNEL = "#***************";
-    private static final String NAME = "***********";
-    private static final String NETWORK = "irc.esper.net";
+    private final String CHANNEL;
+    private final String NAME;
+    private final String NETWORK;
 
     public IrcBot() throws IOException, IrcException {
+        String tempV;
+
+        CHANNEL = ((tempV = Config.getStringFromFile("config", "channel")) == null) ? "" : tempV;
+        NAME = ((tempV = Config.getStringFromFile("config", "nickname")) == null) ? "" : tempV;
+        NETWORK = ((tempV = Config.getStringFromFile("config", "network")) == null) ? "" : tempV;
+
         driver = new PircBotX();
         driver.setName(NAME);
         driver.setLogin(NAME);
@@ -27,5 +33,9 @@ public class IrcBot extends ListenerAdapter {
 
     public PircBotX getDriver() {
         return driver;
+    }
+
+    public String getChannel() {
+        return CHANNEL;
     }
 }

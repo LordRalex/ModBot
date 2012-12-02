@@ -27,7 +27,7 @@ public class IrcBotThread extends Thread {
             }
             List<String> threads = Main.getMail().getThreads();
             for (String thread : threads) {
-                driver.sendMessage(IrcBot.CHANNEL, thread);
+                driver.sendMessage(Main.getIrc().getChannel(), thread);
             }
         }
     }

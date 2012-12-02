@@ -35,7 +35,11 @@ public class Mail extends Thread {
             synchronized (this) {
                 Folder inbox = null;
                 try {
-                    store.connect("localhost", "************", "************");
+                    String tempV;
+                    store.connect(
+                            ((tempV = Config.getStringFromFile("config", "hostname")) == null) ? "localhost" : tempV,
+                            ((tempV = Config.getStringFromFile("config", "username")) == null) ? "user" : tempV, 
+                            ((tempV = Config.getStringFromFile("config", "password")) == null) ? "pass" : tempV);
                     inbox = store.getFolder("Inbox");
                     inbox.open(Folder.READ_WRITE);
                     Message[] messages = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));

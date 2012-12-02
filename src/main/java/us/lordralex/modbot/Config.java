@@ -35,6 +35,8 @@ public class Config {
                     } catch (IndexOutOfBoundsException e) {
                         value = "";
                     }
+                    key = key.trim();
+                    value = value.trim();
                     mapping.put(key.toLowerCase(), value);
                 }
             } catch (IOException ex) {
