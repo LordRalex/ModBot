@@ -19,6 +19,10 @@ import us.lordralex.modbot.Main;
 import us.lordralex.modbot.config.Config;
 import us.lordralex.modbot.scanner.FileExamine;
 
+/**
+ * @version 1.0
+ * @author Lord_Ralex
+ */
 public class Mail extends Thread {
 
     List<String> threads = new ArrayList<>();
@@ -98,6 +102,12 @@ public class Mail extends Thread {
         }
     }
 
+    /**
+     * Returns a list of the messages that have not been sent to the irc
+     * channel. When this is called, the list is then cleared.
+     *
+     * @return List of messages not sent
+     */
     public List<String> getThreads() {
         List<String> old = new ArrayList<>();
         old.addAll(threads);

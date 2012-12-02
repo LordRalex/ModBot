@@ -24,13 +24,16 @@ import java.util.zip.ZipFile;
 import org.pircbotx.Colors;
 import us.lordralex.modbot.Main;
 
+/**
+ * @version 1.0
+ * @author Lord_Ralex
+ */
 public class FileExamine {
 
     private static final File DL_PATH;
 
     static {
         DL_PATH = new File("mnmbot-temp-files");
-        //DL_PATH = new File("Temp/Test-Mod/");
     }
 
     public FileExamine() {
@@ -90,7 +93,6 @@ public class FileExamine {
         private static final File DL_PATH;
 
         static {
-            //DL_PATH = new File("/home/lordralex/mnmbot-temp-files/");
             DL_PATH = new File("Temp/Test-Mod/");
         }
 

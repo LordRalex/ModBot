@@ -7,8 +7,8 @@ import org.pircbotx.hooks.ListenerAdapter;
 import us.lordralex.modbot.config.Config;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class IrcBot extends ListenerAdapter {
 
@@ -32,10 +32,20 @@ public class IrcBot extends ListenerAdapter {
         driver.joinChannel(CHANNEL);
     }
 
+    /**
+     * Gets the PircBotX instance in use
+     *
+     * @return The PircBotX driver in use
+     */
     public PircBotX getDriver() {
         return driver;
     }
 
+    /**
+     * Returns the channel messages are being sent to
+     *
+     * @return Channel name
+     */
     public String getChannel() {
         return CHANNEL;
     }

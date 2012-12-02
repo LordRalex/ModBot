@@ -5,8 +5,8 @@ import org.pircbotx.PircBotX;
 import us.lordralex.modbot.Main;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class IrcBotThread extends Thread {
 

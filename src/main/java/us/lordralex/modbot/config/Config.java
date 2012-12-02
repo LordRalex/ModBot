@@ -10,18 +10,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class Config {
 
     private final Map<String, String> mapping;
     private static final Map<String, Map<String, String>> allLoaded = new ConcurrentHashMap<>();
+    private final String fileName;
 
+    /**
+     * Creates a new config loader. This reads the file if it exists, and adds
+     * it to the collection.
+     *
+     * @param file The File to load
+     */
     public Config(File file) {
         mapping = new ConcurrentHashMap<>();
-        if (allLoaded.containsKey(file.getName().toLowerCase())) {
-            mapping.putAll(allLoaded.get(file.getName().toLowerCase()));
+        fileName = file.getName().toLowerCase();
+        if (allLoaded.containsKey(fileName)) {
+            mapping.putAll(allLoaded.get(fileName));
         } else if (file.exists()) {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -43,17 +51,37 @@ public class Config {
                 Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        allLoaded.put(file.getName().toLowerCase(), mapping);
+        allLoaded.put(fileName, mapping);
     }
 
+    /**
+     * Creates a new config loader. This reads the file if it exists, and adds
+     * it to the collection.
+     *
+     * @param file The File to load
+     */
     public Config(String file) {
         this(new File(file));
     }
 
+    /**
+     * Gets a value from a given key. This uses the config from this
+     *
+     * @param key Key to get
+     * @return The value of the key, or null if the value does not exist
+     */
     public String getString(String key) {
-        return mapping.get(key.toLowerCase());
+        return getStringFromFile(fileName, key);
     }
 
+    /**
+     * Gets a value from a specific config. If the config does not exist, was
+     * not loaded, or the key does not exist in the config, this returns null
+     *
+     * @param file The name of the config
+     * @param key The key to get
+     * @return The value of the key, or null if the config/key does not exist
+     */
     public static String getStringFromFile(String file, String key) {
         Map<String, String> map = allLoaded.get(file.toLowerCase());
         if (map == null) {
