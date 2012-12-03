@@ -10,8 +10,8 @@ import java.util.List;
 import us.lordralex.modbot.scanner.urlparser.URLParser;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class Mediafire implements URLParser {
 

@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 import us.lordralex.modbot.scanner.urlparser.URLParser;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class Adfly implements URLParser {
 

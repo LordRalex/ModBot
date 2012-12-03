@@ -22,8 +22,8 @@ import us.lordralex.modbot.Main;
 import us.lordralex.modbot.scanner.urlparser.URLParser;
 
 /**
- *
- * @author Joshua
+ * @version 1.0
+ * @author Lord_Ralex
  */
 public class VirusTotal implements URLParser {
 
