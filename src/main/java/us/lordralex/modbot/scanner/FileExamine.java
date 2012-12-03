@@ -2,8 +2,6 @@ package us.lordralex.modbot.scanner;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +21,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import org.pircbotx.Colors;
 import us.lordralex.modbot.Main;
+import us.lordralex.modbot.scanner.urlparser.parsers.Adfly;
+import us.lordralex.modbot.scanner.urlparser.parsers.Mediafire;
 
 /**
  * @version 1.0
@@ -217,25 +217,8 @@ public class FileExamine {
                 parts2.add(s);
             }
             reader.close();
-            List<String> d = new ArrayList<>();
-            for (String part : parts2) {
-                String[] e = part.split(",");
-                d.addAll(Arrays.asList(e));
-            }
-            for (int i = 0; i < d.size(); i++) {
-                d.add(i, d.remove(i).trim());
-                if (d.get(i).equalsIgnoreCase("")) {
-                    d.remove(i);
-                    i--;
-                }
-            }
-            for (int i = 0; i < d.size(); i++) {
-                String test = d.get(i);
-                if (test.startsWith("kNO = ")) {
-                    test = test.replace("kNO = ", "").replace("\"", "").trim();
-                    return test;
-                }
-            }
+            Mediafire scrapper = new Mediafire();
+            scrapper.getLink(parts2);
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -262,41 +245,7 @@ public class FileExamine {
             String[] c = part.split(",");
             b.addAll(Arrays.asList(c));
         }
-        for (String string : b) {
-            string = string.trim();
-            if (string.startsWith("var url")) {
-                end = string.replace("var url =", "");
-                end = end.replace("\'", "");
-                end = end.replace(";", "");
-                end = end.trim();
-                if (!end.startsWith("https://adf.ly/")) {
-                    end = "https://adf.ly/" + end;
-                }
-                break;
-            }
-        }
-
-        URL newD = new URL(end);
-        HttpURLConnection newC = (HttpURLConnection) newD.openConnection();
-        DataInputStream input = new DataInputStream(newC.getInputStream());
-        List<String> lines = new ArrayList<>();
-        try {
-            String line;
-            while ((line = input.readLine()) != null) {
-                lines.add(line.trim());
-            }
-        } catch (EOFException e) {
-            reader.close();
-        }
-
-        String result = newD.toExternalForm();
-
-        for (String line : lines) {
-            System.out.println(line);
-            if (line.startsWith("<META")) {
-                result = line.split("URL=")[1].replace("\"", "").replace(">", "");
-            }
-        }
-        return result;
+        Adfly scrapper = new Adfly();
+        return scrapper.getLink(b);
     }
 }

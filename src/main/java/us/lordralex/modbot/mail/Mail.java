@@ -1,6 +1,8 @@
 package us.lordralex.modbot.mail;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,12 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
 import javax.mail.search.FlagTerm;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.pircbotx.PircBotX;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 import us.lordralex.modbot.Main;
 import us.lordralex.modbot.config.Config;
 import us.lordralex.modbot.scanner.FileExamine;
@@ -122,5 +129,30 @@ public class Mail extends Thread {
         old.addAll(threads);
         threads.clear();
         return old;
+    }
+    
+    private void handle () {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(""));
+            
+            
+        } catch (SAXException | IOException | ParserConfigurationException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private enum SENDER {
+        
+        CURSE("");
+        
+        
+        
+        private String send;
+        private SENDER (String email)
+        {
+            
+        }
     }
 }
