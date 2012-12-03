@@ -39,6 +39,8 @@ public class FileExamine {
     public FileExamine() {
     }
 
+    //TODO: Move system to allow reading of correct data, not test examples
+    
     public void start(String link) {
         DL_PATH.mkdirs();
         List<String> temp = new ArrayList<>();
