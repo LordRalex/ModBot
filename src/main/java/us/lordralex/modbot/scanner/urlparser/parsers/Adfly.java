@@ -4,15 +4,17 @@
  */
 package us.lordralex.modbot.scanner.urlparser.parsers;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import us.lordralex.modbot.Main;
 import us.lordralex.modbot.scanner.urlparser.URLParser;
 
 /**
@@ -24,6 +26,7 @@ public class Adfly implements URLParser {
     @Override
     public String getLink(List<String> pageSrc) {
         DataInputStream input = null;
+        BufferedReader reader = null;
         try {
             List<String> b = null;
             String end = null;
@@ -48,14 +51,16 @@ public class Adfly implements URLParser {
             URL newD = new URL(end);
             HttpURLConnection newC = (HttpURLConnection) newD.openConnection();
             input = new DataInputStream(newC.getInputStream());
+            reader = new BufferedReader(new InputStreamReader(input));
             List<String> lines = new ArrayList<>();
             try {
                 String line;
-                while ((line = input.readLine()) != null) {
+                while ((line = reader.readLine()) != null) {
                     lines.add(line.trim());
                 }
             } catch (EOFException e) {
                 input.close();
+                reader.close();
             }
 
             String result = newD.toExternalForm();
@@ -68,12 +73,17 @@ public class Adfly implements URLParser {
             }
             return result;
         } catch (IOException ex) {
-            Logger.getLogger(Adfly.class.getName()).log(Level.SEVERE, null, ex);
+            Main.getLogger().log(Level.SEVERE, null, ex);
         } finally {
             try {
                 input.close();
             } catch (IOException ex) {
-                Logger.getLogger(Adfly.class.getName()).log(Level.SEVERE, null, ex);
+                Main.getLogger().log(Level.SEVERE, null, ex);
+            }
+            try {
+                reader.close();
+            } catch (IOException ex) {
+                Main.getLogger().log(Level.SEVERE, null, ex);
             }
         }
         return null;
