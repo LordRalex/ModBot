@@ -6,6 +6,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import us.lordralex.modbot.config.Config;
 import us.lordralex.modbot.irc.IrcBot;
 import us.lordralex.modbot.irc.IrcBotThread;
 import us.lordralex.modbot.mail.Mail;
@@ -20,6 +21,7 @@ public class Main {
     private static IrcBot irc;
     private static IrcBotThread ircthread;
     private static final Logger logger;
+    private static Config config;
 
     static {
         logger = Logger.getLogger("ModBot");
@@ -54,6 +56,7 @@ public class Main {
      * cause stop of program
      */
     public static void main(String[] args) throws Exception {
+        config = new Config("config");
         mail = new Mail();
         irc = new IrcBot();
         ircthread = new IrcBotThread();

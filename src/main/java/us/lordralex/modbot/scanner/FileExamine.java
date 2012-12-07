@@ -33,7 +33,7 @@ public class FileExamine {
     private static final File DL_PATH;
 
     static {
-        DL_PATH = new File("mnmbot-temp-files");
+        DL_PATH = new File("mnmbot-files");
     }
 
     public FileExamine() {

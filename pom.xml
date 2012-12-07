@@ -6,7 +6,8 @@
   <artifactId>ModBot</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
+  <description>A bot designed for informing of new threads and scan files</description>
+  
   <name>ModBot</name>
   <url>http://maven.apache.org</url>
     <build>
@@ -18,6 +19,7 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
         </plugins>
