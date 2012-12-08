@@ -14,5 +14,5 @@ public class DownloadFile {
         ID = System.currentTimeMillis();
         thread_id = Integer.parseInt(thread);
         fileName = file;
-    }    
+    }
 }
